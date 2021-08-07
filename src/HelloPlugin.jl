@@ -140,7 +140,7 @@ end
 
 
 function install(dest::String; force = false)
-  src = abspath(normpath(joinpath(@__DIR__, "..", Genie.Plugins.FILES_FOLDER)))
+  src = abspath(normpath(joinpath(pathof(@__MODULE__) |> dirname, "..", Genie.Plugins.FILES_FOLDER)))
 
   for f in readdir(src)
     isdir(f) || continue
