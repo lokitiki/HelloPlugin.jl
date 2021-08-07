@@ -23,7 +23,7 @@ end
 function authenticate(user_id::String, session::Genie.Sessions.Session)
   authenticate(Int(user_id.value), session)
 end
-function authenticate(user_id::Union{String,Symbol,Int,SearchLight.DbId}, params::Dict{Symbol,Any} = Genie.Requests.payload()) :: Genie.Sessions.Session
+function authenticate(user_id::Union{String,Symbol,Int}, params::Dict{Symbol,Any} = Genie.Requests.payload()) :: Genie.Sessions.Session
   authenticate(user_id, params[:SESSION])
 end
 
@@ -85,12 +85,12 @@ const authentication = get_authentication
     login(user, params::Dict{Symbol,Any}) :: Union{Nothing,Genie.Sessions.Session}
 Persists on session the id of the user object and returns the session.
 """
-function login(user::M, session::Genie.Sessions.Session)::Union{Nothing,Genie.Sessions.Session} where {M<:SearchLight.AbstractModel}
-  authenticate(getfield(user, Symbol(pk(user))), session)
-end
-function login(user::M, params::Dict = Genie.Requests.payload())::Union{Nothing,Genie.Sessions.Session} where {M<:SearchLight.AbstractModel}
-  login(user, params[:SESSION])
-end
+#function login(user::M, session::Genie.Sessions.Session)::Union{Nothing,Genie.Sessions.Session} where {M<:SearchLight.AbstractModel}
+#  authenticate(getfield(user, Symbol(pk(user))), session)
+#end
+#function login(user::M, params::Dict = Genie.Requests.payload())::Union{Nothing,Genie.Sessions.Session} where {M<:SearchLight.AbstractModel}
+#  login(user, params[:SESSION])
+#end
 
 
 """
